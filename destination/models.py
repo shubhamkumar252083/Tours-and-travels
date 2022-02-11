@@ -77,6 +77,9 @@ class Booking(models.Model):
     arrivals = models.DateField()
     leaving = models.DateField()
 
+    def __str__(self):
+        return self.name
+
 
 class CustomerReview(models.Model):
     name = models.CharField(max_length=50)
