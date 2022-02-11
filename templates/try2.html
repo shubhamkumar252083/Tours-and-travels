@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  {% if object.discount_price %}
+  <span class="mr-1">
+    <del>&#8377;{{ object.price }}</del>
+  </span>
+  <span>&#8377;{{ object.discount_price }}</span>
+  {% else %}
+  <span>&#8377;{{ object.price }}</span>
+  {% endif %}
+
+
+  <p>Description</p>
+
+  <p>{{ object.description }}</p>
+  <div>
+    <a href="{% url 'destination:booking' %}"><img src="{{ object.img_main.url }}" class="card-img-top"></a>
+    <a href="{% url 'destination:booking' %}"><img src="{{ object.img1.url }}" class="card-img-top"></a>
+    <a href="{% url 'destination:booking' %}"><img src="{{ object.img2.url }}" class="card-img-top"></a>
+    <a href="{% url 'destination:booking' %}"><img src="{{ object.img3.url }}" class="card-img-top"></a>
+    <a href="{% url 'destination:booking' %}"><img src="{{ object.img4.url }}" class="card-img-top"></a>
+    <a href="{% url 'destination:booking' %}"><img src="{{ object.img5.url }}" class="card-img-top"></a>
+
+  </div>
+
+
+</body>
+
+</html>

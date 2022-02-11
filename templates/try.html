@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>
+    {{about}}
+  </h1>
+  <div>
+    {% for item in object_list %}
+    <h1>{{ item.state }}</h1>
+    {% if item.discount_price %}
+    {{ item.discount_price }}
+    {% else %}
+    {{ item.price }}
+    {% endif %}
+    <a href="{{ item.get_absolute_url }}"><img src="{{ item.img_main.url }}" class="card-img-top"></a>
+
+
+    {% endfor %}
+  </div>
+
+
+  {%comment%}
+  <div>
+    {% if is_paginated %}
+
+    {% if page_obj.has_previous %}
+    <li>
+      <a href="?page={{ page_obj.previous_page_number }}">
+        <span>Previous</span>
+      </a>
+    </li>
+    {% endif %}
+
+    <li>
+      <a href="?page={{ page_obj.number }}">{{ page_obj.number }}
+        <span>(current)</span>
+      </a>
+    </li>
+
+    {% if page_obj.has_next %}
+    <li>
+      <a href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+        <span>Next</span>
+      </a>
+    </li>
+    {% endif %}
+    {% endif %}
+  </div>
+  {%endcomment%}
+</body>
+
+</html>
