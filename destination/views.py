@@ -19,7 +19,7 @@ def home(request):
 
 class HomeView(ListView):
     model = Destination
-    paginate_by = 1
+    paginate_by = 8
     template_name = "main/index.html"
     # template_name = "try.html"
 
@@ -63,6 +63,20 @@ def booking(request):
 def package(request):
 
     return render(request, "test.html")
+
+
+class PackageView(ListView):
+    model = Destination
+    paginate_by = 2
+    template_name = "main/package.html"
+    # template_name = "try.html"
+
+    # def get_context_data(self, **kwargs):
+    #     # Call the base implementation first to get a context
+    #     context = super().get_context_data(**kwargs)
+    #     # Add in a QuerySet of all the AboutUs
+    #     context['about'] = AboutUs.objects.last()
+    #     return context
 
 
 def about(request):
