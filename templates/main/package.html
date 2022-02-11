@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_title %}Package{% endblock %}
+
+{% block content %}
+<div class="heading" style="background: url({% static 'images/header-bg-2.png' %}) no-repeat;">
+   <h1>packages</h1>
+</div>
+
+
+<section class="packages">
+
+   <h1 class="heading-title">top destinations</h1>
+
+   <div class="box-container">
+      {% for item in object_list %}
+      <div class="box">
+         <div class="image">
+            <a href="{{ item.get_absolute_url }}"><img src="{{ item.img_main.url }}"></a>
+         </div>
+         <div class="content">
+            <h3>{{ item.place_name }}</h3>
+            <p>{{ item.description_of_place }}</p>
+            <a href="{% url 'destination:booking' %}" class="btn">book now</a>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+
+   {% if is_paginated %}
+   {% if page_obj.has_previous %}
+   <div class="load-more"><a href="?page={{ page_obj.previous_page_number }}" class="btn">previous
+
+      </a></div>
+   {% endif %}
+
+   {% if page_obj.has_next %}
+   <div class="load-more"><a href="?page={{ page_obj.next_page_number }}" class="btn">Next
+
+      </a></div>
+   {% endif %}
+
+   {% endif %}
+
+</section>
+
+
+{% endblock content %}

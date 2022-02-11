@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views import View
 # Create your views here.
-from .models import (Destination, Booking, AboutUs)
+from .models import (Destination, Booking, AboutUs, CustomerReview)
 from .forms import BookingForm
 
 
@@ -19,7 +19,7 @@ def home(request):
 
 class HomeView(ListView):
     model = Destination
-    paginate_by = 1
+    paginate_by = 8
     template_name = "main/index.html"
     # template_name = "try.html"
 
@@ -57,7 +57,7 @@ def booking(request):
     context = {
         'form': form
     }
-    return render(request, "tryForm.html", context)
+    return render(request, "main/book.html", context)
 
 
 def package(request):
@@ -65,6 +65,25 @@ def package(request):
     return render(request, "test.html")
 
 
+class PackageView(ListView):
+    model = Destination
+    paginate_by = 2
+    template_name = "main/package.html"
+    # template_name = "try.html"
+
+    # def get_context_data(self, **kwargs):
+    #     # Call the base implementation first to get a context
+    #     context = super().get_context_data(**kwargs)
+    #     # Add in a QuerySet of all the AboutUs
+    #     context['about'] = AboutUs.objects.last()
+    #     return context
+
+
 def about(request):
 
     return render(request, "test.html")
+
+
+class AboutView(ListView):
+    model = CustomerReview
+    template_name = "main/about.html"

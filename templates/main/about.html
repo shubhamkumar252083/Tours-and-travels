@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_title %}About Us{% endblock %}
+
+{% block content %}
+
+<div class="heading" style="background: url({% static 'images/header-bg-1.png' %}) no-repeat;">
+  <h1>about us</h1>
+</div>
+
+<section class="about">
+
+  <div class="image">
+    <img src="{%static 'images/about-img.jpg'%}" alt="about-img.jpg">
+  </div>
+
+  <div class="content">
+    <h3>why choose us?</h3>
+    <p>put detail</p>
+    <div class="icons-container">
+      <div class="icons">
+        <i class="fas fa-map"></i>
+        <span>top destinations</span>
+      </div>
+      <div class="icons">
+        <i class="fas fa-hand-holding-usd"></i>
+        <span>affordable price</span>
+      </div>
+      <div class="icons">
+        <i class="fas fa-headset"></i>
+        <span>24/7 guide service</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<section class="reviews">
+  <h1 class="heading-title"> clients reviews </h1>
+  <div class="swiper reviews-slider">
+    <div class="swiper-wrapper">
+      {% for item in object_list %}
+      <div class="swiper-slide slide">
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>{{item.review}}</p>
+        <h3>{{item.name}}</h3>
+        <span>traveler</span>
+        <img src="{{ item.image.url }}" alt="small image">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+
+{% endblock content %}
