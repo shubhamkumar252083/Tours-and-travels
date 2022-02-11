@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views import View
 # Create your views here.
-from .models import (Destination, Booking, AboutUs)
+from .models import (Destination, Booking, AboutUs, CustomerReview)
 from .forms import BookingForm
 
 
@@ -57,7 +57,7 @@ def booking(request):
     context = {
         'form': form
     }
-    return render(request, "tryForm.html", context)
+    return render(request, "main/book.html", context)
 
 
 def package(request):
@@ -82,3 +82,8 @@ class PackageView(ListView):
 def about(request):
 
     return render(request, "test.html")
+
+
+class AboutView(ListView):
+    model = CustomerReview
+    template_name = "main/about.html"

@@ -1,9 +1,8 @@
-
 from django.db import models
 from django.shortcuts import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django_countries.fields import CountryField
-
+from django.core.exceptions import ValidationError
 # Create your models here.
 
 CONTINENT_CHOICES = (
@@ -15,6 +14,17 @@ CONTINENT_CHOICES = (
     ('eu', 'Europe'),
     ('au', 'Australia')
 )
+
+
+def validate_image(image):
+    file_size = image.file.size
+    limit_kb = 80
+    if file_size > limit_kb * 1024:
+        raise ValidationError("Max size of file is %s KB" % limit_kb)
+
+    #limit_mb = 8
+    # if file_size > limit_mb * 1024 * 1024:
+    #    raise ValidationError("Max size of file is %s MB" % limit_mb)
 
 
 class AboutUs(models.Model):
@@ -66,3 +76,18 @@ class Booking(models.Model):
     guests = models.PositiveSmallIntegerField(default=1)
     arrivals = models.DateField()
     leaving = models.DateField()
+
+
+class CustomerReview(models.Model):
+    name = models.CharField(max_length=50)
+    stars = models.PositiveSmallIntegerField(default=5, validators=[MaxValueValidator(
+        5), MinValueValidator(1)]
+    )
+    review = models.CharField(max_length=500)
+    image = models.ImageField('Image',
+                              null=True,
+                              blank=True,
+                              validators=[validate_image])
+
+    def __str__(self):
+        return self.name
