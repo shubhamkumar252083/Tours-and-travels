@@ -1,9 +1,32 @@
 import os
+import dotenv
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u6c9!mefm7gdzu)_k4b+^v1jzc_8)!y2tlygq1cma8%nbksam5'
+# Add .env variables anywhere before SECRET_KEY
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+
+# UPDATE secret key
+SECRET_KEY = os.environ['SECRET_KEY']  # Instead of your actual secret key
+
+# or simply
+'''
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY')
+'''
+
+# or
+'''
+Update: I found out you can also use the config method from the package python-decouple that seems to be a bit easier:
+
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY')
+'''
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
