@@ -7,14 +7,14 @@ from .models import (Destination, Booking, AboutUs, CustomerReview)
 from .forms import BookingForm
 
 
-def home(request):
+# def home(request):
 
-    text_on_about_us_div = AboutUs.objects.last()
+#     text_on_about_us_div = AboutUs.objects.last()
 
-    context = {
-        "text": text_on_about_us_div,
-    }
-    return render(request, "main/index.html", context)
+#     context = {
+#         "text": text_on_about_us_div,
+#     }
+#     return render(request, "main/index.html", context)
 
 
 class HomeView(ListView):
@@ -34,7 +34,6 @@ class HomeView(ListView):
 
 class PlaceDetailView(DetailView):
     model = Destination
-    # template_name = "test2.html"
     template_name = "main/detail.html"
 
 
@@ -68,7 +67,7 @@ def package(request):
 
 class PackageView(ListView):
     model = Destination
-    paginate_by = 2
+    paginate_by = 8
     template_name = "main/package.html"
     # template_name = "try.html"
 
