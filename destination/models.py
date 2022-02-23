@@ -53,6 +53,9 @@ class Destination(models.Model):
     img3 = models.ImageField()
     img4 = models.ImageField()
     img5 = models.ImageField()
+    img6 = models.ImageField(blank=True, null=True)
+    img7 = models.ImageField(blank=True, null=True)
+    img8 = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.country.name
@@ -76,6 +79,9 @@ class Booking(models.Model):
     guests = models.PositiveSmallIntegerField(default=1)
     arrivals = models.DateField()
     leaving = models.DateField()
+
+    def __str__(self):
+        return self.name
 
 
 class CustomerReview(models.Model):

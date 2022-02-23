@@ -34,7 +34,8 @@ class HomeView(ListView):
 
 class PlaceDetailView(DetailView):
     model = Destination
-    template_name = "try2.html"
+    # template_name = "test2.html"
+    template_name = "main/detail.html"
 
 
 def booking(request):
