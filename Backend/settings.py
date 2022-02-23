@@ -62,11 +62,23 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # note -> use "django.db.backends.postgresql_psycopg2" instead of "django.db.backends.postgresql"
+        'NAME': "qbybhsho",  # User & Default database
+        "USER": "qbybhsho",  # User & Default database
+        "PASSWORD": "Bq5hDmwNrxM18ycVNEqXxNw-ulLqXTr2",
+        "HOST": "satao.db.elephantsql.com",
+        "PORT": "5432"
     }
+    # url = postgres://coykmrea:iQYQTA3Lk5SALvfvL5c-E50TAVSpK56A@satao.db.elephantsql.com/coykmrea
 }
 
 
